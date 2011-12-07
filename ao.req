@@ -1,0 +1,7 @@
+#!/bin/sh
+
+filelist=`sed "s/['\"]/\\\&/g"`
+
+{ echo $filelist | tr [:blank:] \\n | /usr/lib/rpm/find-requires | \
+	grep -v 'artsc\|esd\|audiofile\|asound\|libpulse'
+} | sort -u
